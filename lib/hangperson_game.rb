@@ -40,21 +40,14 @@ class HangpersonGame
   end
 
   def check_win_or_lose
-    if @num_wrong == 7
-      :lose
-    elsif word_with_guesses == @word
-      :win
-    else
-      :play
-    end
+    return :lose if @num_wrong == 7
+    return :win if word_with_guesses == @word
+    :play
   end
 
   def word_with_guesses
-    if @guesses == ''
-      @word.tr(@word, '-')
-    else
-      @word.gsub(Regexp.new('[^' + @guesses + ']'), '-')
-    end
+    return @word.tr(@word, '-') if @guesses == ''
+    @word.gsub(Regexp.new('[^' + @guesses + ']'), '-')
   end
 
 end
